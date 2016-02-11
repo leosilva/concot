@@ -3,6 +3,7 @@ package concot
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.converters.JSON
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -49,6 +50,31 @@ class CategoriaController {
     def edit(Categoria categoriaInstance) {
         respond categoriaInstance
     }
+	
+	/**
+	 * Exemplo de action de busca por filtro. Esse filtro é passado por um parâmetro via GET (pode ser POST também, a forma de
+	 * obte-lo é a mesma). Essa action pode ser chamada, por exemplo, pela URL http://localhost:8080/concot/categoria/buscarCategoriasPorNome?filtro=Cat 
+	 * @return
+	 */
+	def buscarCategoriasPorNome() {
+		// através do mapa 'params' o parâmetro do request é recuperado e atribuído a uma variável.
+		def nome = params.filtro
+		/* é renderizada a view 'listaCategoriasSimplificada' e um mapa é enviado pelo response. Nesse mapa existe uma única variável, 'categorias', que contém
+		 * uma lista de categorias filtradas pelo nome.
+		 */
+		render view: "listaCategoriasSimplificada", model : [categorias : Categoria.findAllByNomeLike("%${nome}%")]
+	}
+	
+	/**
+	 * Exemplo de action de busca. Essa action pode ser chamada, por exemplo, pela URL http://localhost:8080/concot/categoria/listarTodasCategorias
+	 * @return
+	 */
+	def listarTodasCategorias() {
+		/* é renderizada a view 'listaCategoriasSimplificada' e um mapa é enviado pelo response. Nesse mapa existe uma única variável, 'categorias', que contém
+		 * uma lista de todas as categoria.
+		 */
+		render view: "listaCategoriasSimplificada", model : [categorias : Categoria.list()]
+	}
 
     @Transactional
     def update(Categoria categoriaInstance) {
