@@ -8,9 +8,9 @@ class BootStrap {
 		 * inserindo um registro no banco de dados
 		 */
 		def categoria = new Categoria(nome: "Categoria 1")
-		categoria.save(flush: true)
-//		def categoria2 = new Categoria(nome: "Categoria 2")
-//		categoria2.save(flush: true)
+		categoria.save()
+		def categoria2 = new Categoria(nome: "Categoria 2")
+		categoria2.save(flush: true)
 		/*
 		 * Atualizando um registro
 		 */
@@ -22,6 +22,7 @@ class BootStrap {
 		 */
 //		def cat = Categoria.findByNome("Categoria 1")
 //		cat.delete(flush: true)
+		
 		/*
 		 * Inserindo itens
 		 */
@@ -30,7 +31,14 @@ class BootStrap {
 		def cat = Categoria.findByNome("Categoria 1")
 		cat.addToItens(item1)
 		cat.addToItens(item2)
-		cat.save(flush: true)
+		cat.save()
+		
+		def item3 = new Item(nome: "Item 3")
+		def item4 = new Item(nome: "Item 4")
+		def cat2 = Categoria.findByNome("Categoria 2")
+		cat2.addToItens(item3)
+		cat2.addToItens(item4)
+		cat2.save(flush: true)
     }
     def destroy = {
     }

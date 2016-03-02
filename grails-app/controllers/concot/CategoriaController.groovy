@@ -75,6 +75,15 @@ class CategoriaController {
 		 */
 		render view: "listaCategoriasSimplificada", model : [categorias : Categoria.list()]
 	}
+	
+	def exemploAjax() {
+		render view: "exemploAjax", model: [categorias : Categoria.list()]
+	}
+	
+	def recuperarItensPorCategoria() {
+		def cat = Categoria.get(params.categoriaId as Long)
+		render (Item.findAllByCategoria(cat) as JSON)
+	}
 
     @Transactional
     def update(Categoria categoriaInstance) {
