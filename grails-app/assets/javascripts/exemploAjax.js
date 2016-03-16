@@ -16,7 +16,9 @@ $(document).ready(function () {
 	        	$.each(data, function(index, value) {
 	        		html += value.nome + "<br>";
 	        	});
+	        	console.log(data)
 	        	html += "</p>"
+        		console.log(html)
 	        	$("#divItens").html(html);
 	        },
 	        error: function(data) {

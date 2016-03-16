@@ -174,6 +174,22 @@
 	                    </div>
 	                </div>
 	            </div>
+	            <div class="col-md-4">
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h4>Exemplo de jQuery UI</h4>
+	                    </div>
+	                    <div class="panel-body">
+	                        <p>DatePicker</p>
+	                        <g:textField name="dataInicial" required=""/>
+							<script type="text/javascript">
+								$(document).ready(function() {
+									$("#dataInicial").datepicker({dateFormat: 'dd/mm/yy'});
+								})
+							</script>
+	                    </div>
+	                </div>
+	            </div>
 	        </div>
 	        <!-- /.row -->
 	
